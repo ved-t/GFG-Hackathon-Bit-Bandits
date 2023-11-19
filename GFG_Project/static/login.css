@@ -1,0 +1,49 @@
+img {
+    height: 100vh;
+    width: 100vw;
+}
+
+.top {
+    position: relative;
+    bottom: 583px;
+    left: 93px;
+    height: 333px;
+    width: 360px;
+
+    border-radius: 12px;
+    background-color: white;
+}
+
+#first {
+    display: block;
+    width: 34%;
+    margin: auto;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 32px;
+}
+
+.pass input {
+    display: block;
+    width: 75%;
+    margin: 18px auto;
+    position: relative;
+    top: 50px;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.submit input {
+    display: block;
+    margin: auto;
+    position: relative;
+    top: 80px;
+    width: 82%;
+    height: 34px;
+    background-color: #4040ff;
+    color: white;
+    font-size: 16px;
+    border-color: white;
+    border-radius: 20px;
+}
+
