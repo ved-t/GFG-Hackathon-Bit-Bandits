@@ -16,7 +16,21 @@ const loginSchema = new mongoose.Schema({
     password: String
 });
 
+const InformationSchema = new mongoose.Schema({
+    name: String,
+    drName: String,
+    description: String,
+    checkboxes1: [String],
+    checkboxes2: [String],
+    otherCategory: String,
+    date: Date,
+    time: String
+});
+
+
 const Login = mongoose.model('login', loginSchema);
+
+const MedInfo = mongoose.model('MedInfo', InformationSchema);
 
 const app = express()
 const port = 80
@@ -42,7 +56,7 @@ app.get('/login', (req, res)=>{
 
 
 app.post('/signup', async (req, res)=>{
-    var myData = new Login(req.body);
+    const myData = new Login(req.body);
     myData.save().then(()=>{
         res.status(200).render('after_login.pug')
     }).catch(()=>{
@@ -69,8 +83,26 @@ app.post('/login', async (req, res)=>{
 app.get('/addInfo', async (req, res)=>{
     const params = {'checkname': check.name, 'password': check.password}
     console.log(check.name)
-    res.status(200).render('addInfo.pug', params)
+    res.status(200).render('Add_Info.pug', params)
 })
+
+app.post('/addInfo', async (req, res)=>{
+    const formData = req.body;
+    try {
+
+    // Create a new FormData document
+    const newFormData = new MedInfo(formData);
+
+    // Save the document to the database
+    await newFormData.save();
+
+    res.status(200).send('Form data successfully submitted to MongoDB');
+  } catch (err) {
+    console.error('Error inserting data into MongoDB:', err);
+    res.status(500).send('Internal Server Error');
+  }
+})
+
 
 // STSRT THE SERVER
 app.listen(port, ()=>{
